@@ -46,12 +46,16 @@ def GetRadioFiles(z):
       fn = "RADIO/" + info.filename[6:]
       out[fn] = fn
   return out
-
-def FullOTA_Assertions(info):
+def _MakeRecoveryPatch(input_dir, output_sink, recovery_img, boot_img,
+                       info_dict=None):
+ 	return
+ def FullOTA_Assertions(info):
   AddBasebandAssertion(info)
   AddTrustZoneAssertion(info)
   return
-
+common.MakeRecoveryPatch = types.MethodType(_MakeRecoveryPatch, common)
+#Force file-based OTA
+common.OPTIONS.block_based = False
 def IncrementalOTA_Assertions(info):
   AddBasebandAssertion(info)
   AddTrustZoneAssertion(info)

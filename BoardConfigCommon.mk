@@ -17,3 +17,10 @@ VENDOR_PATH := device/cyanogen/msm8916-common
 
 # Include board config fragments
 include $(VENDOR_PATH)/board/*.mk
+
+#Qualcomm SDllvm
+ifneq ($(HOST_OS),darwin)
+SDCLANG := true
+SDCLANG_PATH := prebuilts/clang/linux-x86/host/sdclang-3.8/bin
+SDCLANG_LTO_DEFS := device/qcom/common/sdllvm-lto-defs.mk
+endif
